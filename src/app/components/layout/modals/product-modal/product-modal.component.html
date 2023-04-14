@@ -1,0 +1,66 @@
+<h2 mat-dialog-title> {{ actionTitle }}</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="productForm">
+        
+        <mat-grid-list cols="1" rowHeight="80px">
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input type="text" matInput formControlName="name" autocomplete="off">
+                    <mat-icon matSuffix>fit_screen</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Categoria</mat-label>
+                    <mat-select formControlName="categoryId">
+                        <mat-option *ngFor="let item of categoriesList" [value]="item.categoryId">{{ item.name }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile> 
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Stock</mat-label>
+                    <input type="number" matInput formControlName="stock" autocomplete="off">
+                    <mat-icon matSuffix>edit_square</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>  
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Precio</mat-label>
+                    <input type="text" matInput formControlName="price" autocomplete="off">
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>  
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="isActive">
+                        <mat-option value="0">No Activo</mat-option>
+                        <mat-option value="1">Activo</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+
+        </mat-grid-list>
+    
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+    <button mat-raised-button mat-dialog-close color="warn">
+        Volver
+    </button>
+
+    <button mat-raised-button color="primary" [disabled]="productForm.invalid" (click)="handleProduct()">
+        {{ actionButton }}
+    </button>
+    
+</mat-dialog-actions>

@@ -1,0 +1,71 @@
+<h1 style="margin: 20px 0px 0px 40px;">Usuarios</h1>
+
+<mat-card style="margin: 20px 40px 40px 40px; padding: 20px;">
+    <mat-card-title>
+        <button mat-raised-button color="primary" (click)="addUser()">
+            <mat-icon mat-list-icon>add</mat-icon>
+            Nuevo Usuario
+        </button>
+    </mat-card-title>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<mat-card-content class="dashboard-card-content">
+
+    <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input type="text" matInput (keyup)="filterTable($event)" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z2">
+        <table mat-table [dataSource]="usersDataTable">
+
+            <ng-container matColumnDef="fullName">
+                <th mat-header-cell *matHeaderCellDef>Nombre Completo</th>
+                <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>Correo Electronico</th>
+                <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="rolDescription">
+                <th mat-header-cell *matHeaderCellDef>Rol Descripcion</th>
+                <td mat-cell *matCellDef="let element"> {{ element.rolDescription }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Estado</th>
+                <td mat-cell *matCellDef="let element"> {{ element.isActive == 1 ? 'Activo' : 'No activo' }}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef style="width: 80px;"></th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="primary" (click)="editUser(element)">
+                        <mat-icon>edit</mat-icon>
+                    </button> 
+                    <button mat-icon-button color="warn" (click)="deleteUser(element)">
+                        <mat-icon>delete</mat-icon>
+                    </button> 
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsTable"></tr>
+            <tr mat-row *matRowDef="let row; columns:columnsTable;"></tr>
+
+            <tr class="mat-row" *matNoDataRow="">
+                <td class="mat-cell">No hay datos que coincidan con el filtro "{{input.value}}"</td>
+            </tr>
+
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons>
+
+        </mat-paginator>
+
+    </div>
+
+</mat-card-content>

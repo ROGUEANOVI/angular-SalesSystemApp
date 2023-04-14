@@ -1,0 +1,33 @@
+.quick-search{
+    display: flex;
+    align-items: flex-start;
+}
+
+.form-field{
+    display: flex;
+    align-items: flex-start;
+}
+
+.filter-button{
+    width: 150px;
+    margin-top: 15px;
+}
+.all-button{
+    width: 150px;
+    height: 50px;
+    margin-top: 15px;
+}
+
+mat-form-field{
+    margin-right: 10px;
+}
+
+.input-filter{
+    width: 80%;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+table{
+    width: 100%;
+}
